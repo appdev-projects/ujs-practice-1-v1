@@ -7,7 +7,7 @@
           <div class="card-text">
             <%= link_to "New Task", new_task_path %>
           </div>
-          <% @tasks.where( :status == foo: ).each do |task| %>
+          <% Task.all.where( :status == :foo ).each do |task| %>
             <div class="container">
               <div class="row card-text">
                 <td><%= task.body %></td>

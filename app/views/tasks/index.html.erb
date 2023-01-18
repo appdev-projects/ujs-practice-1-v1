@@ -1,17 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
-
 <div class="container">
   <div class="row">
     <div class="col">
-      <%= render "shared/task_list", locals: { foo: "pending" } %>
+      <%= render "shared/task_list", locals: { foo: :pending } %>
     </div>
     <div class="col">
-      <%= render "shared/task_list", locals: { foo: "wip" } %>
+      <%= render "shared/task_list", locals: { foo: :wip } %>
     </div>
     <div class="col">
-      <%= render "shared/task_list", locals: { foo: "completed" } %>
+      <%= render "shared/task_list", locals: { foo: :completed } %>
     </div>
   </div>
 </div>
