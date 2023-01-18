@@ -6,11 +6,11 @@ def sample_data do
 
 ##Create 10 Users##
 
-  p "creating users".
+  p "creating users."
 
   10.times do
   new_user = User.create(
-    email:      Faker::First_name.first_name+"@example.com"
+    email:      Faker::First_name.first_name+"@example.com",
     password:   "password"
   )
   end
@@ -22,10 +22,9 @@ def sample_data do
   p "creating Danny."
 
   danny = User.create(
-    email:      "danny@example.com"
+    email:      "danny@example.com",
     password:   "password"
   )
-  end
 
   p "Heere's Danny!"
   p danny
@@ -34,10 +33,10 @@ def sample_data do
 ##Create Tasks##
 
 100.times do
-  random_user = User.sample
+  random_user = User.all.sample
   
   new_task = Task.create(
-    body:      Faker::Marketing.buzzwords
+    body:      Faker::Marketing.buzzwords,
     owner_id:   random_user.id
   )
   end
