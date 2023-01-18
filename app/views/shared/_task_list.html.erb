@@ -1,0 +1,24 @@
+<div class="col">
+      <div class="card">
+        <div class="card-header">
+          Not Yet Started
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            <%= link_to "New Task", new_task_path %>
+          </div>
+          <% @tasks.where( :status == foo: ).each do |task| %>
+            <div class="container">
+              <div class="row card-text">
+                <td><%= task.body %></td>
+              </div>
+              <div class="row">
+                <div class="col"><span><%= link_to 'Move', edit_task_path(task) %></span></div>
+                <div class="col"><span><%= link_to 'Edit', edit_task_path(task) %></span></div>
+                <div class="col"><span><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
