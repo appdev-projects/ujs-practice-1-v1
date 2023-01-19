@@ -1,5 +1,5 @@
 class AdUsernameToUsers < ActiveRecord::Migration[6.1]
   def change
-    add_column :users, :username, :citext
+    add_column :users, :username, :string
   end
 end
