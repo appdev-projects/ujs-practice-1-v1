@@ -47,6 +47,23 @@ class TasksController < ApplicationController
     end
   end
 
+   # Get Move
+   def move
+
+    task = current_user.tasks.where(:id => params.fetch( :id )).first
+
+
+    if task.status == "pending"
+      task.status = "wip"
+    elsif task.status == "wip"
+      task.status = "completed"
+    elsif task.status == "completed"
+      task.status = "wip"
+    end
+    task.save
+  end
+
+
   # DELETE /tasks/1 or /tasks/1.json
   def destroy
     @task.destroy

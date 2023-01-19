@@ -16,21 +16,56 @@
             <%= form.text_area :body, class: "form-control" %>
             <%= form.hidden_field :status, value: :pending %>
             <%= form.hidden_field :owner_id, value: current_user.id %>
-            <%= form.submit "Create Task", class: "btn btn-primary" %>
+            <hr class="invisible">
+            <%= form.submit "Create Task", class: "btn btn-primary container-fluid" %>
+            <hr>
           <% end %>
         </div>
       <% end %>
       <% current_user.tasks.where( :status => foo ).each do |task| %>
-        <div class="container">
-          <div class="row card-text">
-            <div><%= task.body %></div>
-          </div>
+        <div class="card">
           <div class="row">
-            <div class="col"><span><%= link_to 'Move', edit_task_path(task) %></span></div>
-            <div class="col"><span><%= link_to 'Edit', edit_task_path(task) %></span></div>
-            <div class="col"><span><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
+            <div class="card-body card-text">
+              <%= task.body %>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col">
+                <span>
+                  <% if foo == :pending%>
+                    <%= link_to move_task_path(task), method: "put" do %>
+                      <i class="fa-solid fa-arrow-right"></i>
+                    <% end %>
+                  <% elsif foo == :wip %>
+                    <%= link_to move_task_path(task), method: "put" do %>
+                      <i class="fa-solid fa-check"></i>
+                    <% end %>
+                  <% elsif foo == :completed %>
+                    <%= link_to move_task_path(task), method: "put" do %>
+                      <i class="fa-solid fa-backward"></i>
+                    <% end %>
+                  <% end %>
+                </span>
+              </div>
+              <div class="col">
+                <span>
+                  <%= link_to  edit_task_path(task) do %>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  <% end %>
+                </span>
+              </div>
+              <div class="col">
+                <span>
+                  <%= link_to task_path(task), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
+        <hr class="invisible">
       <% end %>
     </div>
   </div>
