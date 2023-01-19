@@ -1,24 +1,37 @@
 <div class="col">
-      <div class="card">
-        <div class="card-header">
-          Not Yet Started
-        </div>
-        <div class="card-body">
-          <div class="card-text">
-            <%= link_to "New Task", new_task_path %>
-          </div>
-          <% Task.all.where( :status == :foo ).each do |task| %>
-            <div class="container">
-              <div class="row card-text">
-                <td><%= task.body %></td>
-              </div>
-              <div class="row">
-                <div class="col"><span><%= link_to 'Move', edit_task_path(task) %></span></div>
-                <div class="col"><span><%= link_to 'Edit', edit_task_path(task) %></span></div>
-                <div class="col"><span><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
-              </div>
-            </div>
+  <div class="card">
+    <div class="card-header">
+      <% if foo == :pending%>
+        Not Yet Started
+      <% elsif foo == :wip %>
+        In Progress
+      <% else %>
+        Completed
+      <% end %>
+    </div>
+    <div class="card-body">
+      <% if foo == :pending %>
+        <div class="card-text">
+          <%= form_with model: Task do |form| %>
+            <%= form.text_area :body, class: "form-control" %>
+            <%= form.hidden_field :status, value: :pending %>
+            <%= form.hidden_field :owner_id, value: current_user.id %>
+            <%= form.submit "Create Task", class: "btn btn-primary" %>
           <% end %>
         </div>
-      </div>
+      <% end %>
+      <% current_user.tasks.where( :status => foo ).each do |task| %>
+        <div class="container">
+          <div class="row card-text">
+            <div><%= task.body %></div>
+          </div>
+          <div class="row">
+            <div class="col"><span><%= link_to 'Move', edit_task_path(task) %></span></div>
+            <div class="col"><span><%= link_to 'Edit', edit_task_path(task) %></span></div>
+            <div class="col"><span><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
+          </div>
+        </div>
+      <% end %>
     </div>
+  </div>
+</div>
