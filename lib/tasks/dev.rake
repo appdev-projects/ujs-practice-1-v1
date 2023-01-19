@@ -1,9 +1,9 @@
-task :sample_data do
+task sample_data: :environment do
   p "Creating sample data"
 
   if Rails.env.development?
-    #Task.destroy_all
-    #User.destroy_all
+    Task.destroy_all
+    User.destroy_all
   end
 
 
@@ -14,6 +14,8 @@ task :sample_data do
   end
   usernames << "alice"
   usernames << "bob"
+  p "List made"
+
   usernames.each do |username|
     last_name = Faker::Name.last_name   
     User.create(
