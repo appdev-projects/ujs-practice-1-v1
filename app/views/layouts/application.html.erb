@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Vanilla Rails</title>
+    <meta charset="utf-8">
+    <title>AC Tasks</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= render "shared/cdn_assets" %>
   </head>
 
   <body>
-    <%= yield %>
+    <%=render "shared/navbar"%>
+
+    <div class ="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <% if notice.present?%>
+            <%=render "shared/flash", message: notice, css_class: "success" %>
+          <% end %>
+
+          <% if alert.present?%>
+            <%=render "shared/flash", message: alert, css_class: "danger" %>
+          <% end %>
+
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    
   </body>
 </html>
