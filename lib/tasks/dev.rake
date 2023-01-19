@@ -25,5 +25,18 @@ task sample_data: :environment do
   end
   p "#{User.count} users have been created."
 
+  all_users = User.all
 
+  #Tasks
+  all_users.each do |user|
+    5.times do
+      Task.create(
+        user_id: user.id,
+        content: Faker::TvShows::GameOfThrones.quote,
+        status: "not_yet_started"
+      )
+    end
+  end
+
+  p  "#{Task.count} tasks have been created."
 end
