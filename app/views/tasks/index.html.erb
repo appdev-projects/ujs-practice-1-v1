@@ -5,16 +5,27 @@
       <% current_user.tasks.not_yet_started.each do |task| %>
         <li class="list-group-item">
           <%= task.content %>
-          <td><%= link_to 'Edit', edit_task_path(task) %></td>
+          <div class ="row">
+            <div class="col-md-4">
+              Mover
+            </div>
+            <div class="col-md-4">
+              <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            </div>
+            <div class="col-md-4">
+              <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+          
         </li>
       <% end %>
     </ul>
   
     <h2 class="h6 text-center"> In progress </h2>
     <ul class="list-group">
-      <% current_user.tasks.in_progress.each do |task| %>
+      <% current_user.tasks.in_progress.each do |a_task| %>
         <li class="list-group-item">
-          <%= task.content %>
+          <#%= render partial: "tasks/taskview", locals: { task: :a_task }  %>
         </li>
       <% end %>
     </ul>

@@ -9,8 +9,10 @@ class TasksController < ApplicationController
         @task.not_yet_started!
       else
         @task.completed!
+      end
     else
       @task.in_progress!
+    end
 
       respond_to do |format|
         format.html { redirect_to task_url, notice: "Task status updated" }
