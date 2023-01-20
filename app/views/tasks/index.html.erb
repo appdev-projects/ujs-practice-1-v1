@@ -5,6 +5,7 @@
       <% current_user.tasks.not_yet_started.each do |task| %>
         <li class="list-group-item">
           <%= task.content %>
+          <td><%= link_to 'Edit', edit_task_path(task) %></td>
         </li>
       <% end %>
     </ul>

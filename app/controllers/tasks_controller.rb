@@ -1,5 +1,21 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy move]
+
+  def move
+    if @task.not_yet_started?
+      @task.in_progress!
+    elsif @task.in_progress?
+      if action = back
+        @task.not_yet_started!
+      else
+        @task.completed!
+    else
+      @task.in_progress!
+
+      respond_to do |format|
+        format.html { redirect_to task_url, notice: "Task status updated" }
+      end
+  end
 
   # GET /tasks or /tasks.json
   def index
@@ -22,6 +38,7 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = Task.new(task_params)
+    @comment.author = current_user
 
     respond_to do |format|
       if @task.save
