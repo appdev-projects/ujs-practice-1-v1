@@ -1,37 +1,46 @@
 <div class="row">
   <div class="col-md-4">
-    <h2 class="h6 text-center"> Not yet started </h2>
+    <div class="card">
+      <div class="card-header">
+        Not yet started
+      </div>
   
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div class="card-body">
-          <%= render "form", task: @task %>
-        </div>
-
-        <%= link_to 'New Task', new_task_path %>
-      </li>
-      <% current_user.tasks.not_yet_started.each do |a_task| %>
-        <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
-      <% end %>
-    </ul>
-  </div>
-
-  <div class="col-md-4">
-    <h2 class="h6 text-center"> In progress </h2>
-    <ul class="list-group">
-      <% current_user.tasks.in_progress.each do |a_task| %>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="card-body">
+            <%= render "form", task: @task %>
+          </div>
+        </li>
+        <% current_user.tasks.not_yet_started.each do |a_task| %>
           <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
-      <% end %>
-    </ul>
+        <% end %>
+      </ul>
+    </div>
   </div>
 
   <div class="col-md-4">
-    <h2 class="h6 text-center"> Complete </h2>
-    <ul class="list-group">
-      <% current_user.tasks.completed.each do |a_task| %>
-        <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
-      <% end %>
-    </ul>
+    <div class="card">
+      <div class="card-header">
+        In progress
+      </div>
+      <ul class="list-group">
+        <% current_user.tasks.in_progress.each do |a_task| %>
+            <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Complete
+      </div>
+      <ul class="list-group">
+        <% current_user.tasks.completed.each do |a_task| %>
+          <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
