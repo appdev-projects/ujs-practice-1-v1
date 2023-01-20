@@ -1,5 +1,5 @@
 <li id="<%= dom_id task, :form %>" class="list-group-item">
-<%= form_with(model: task) do |form| %>
+<%= form_with(model: task, local: false) do |form| %>
   <div class="field">
     <%= form.label :content, class: "visually-hidden" %>
     <%= form.text_area :content, class: "form-control" %>
@@ -11,3 +11,4 @@
     </div>
   </div>
 <% end %>
+</li>
