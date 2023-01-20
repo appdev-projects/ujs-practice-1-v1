@@ -54,7 +54,7 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = Task.new(task_params)
-    @comment.author = current_user
+    @task.user = current_user
 
     respond_to do |format|
       if @task.save
