@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :tasks do
-    patch "move", on: :member
+    patch "forward", on: :member
+    patch "back", on: :member
   end
   
 end

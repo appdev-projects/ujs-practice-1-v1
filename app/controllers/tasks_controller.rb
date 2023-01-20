@@ -1,22 +1,36 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy move]
+  before_action :set_task, only: %i[ show edit update destroy forward back]
 
-  def move
+  def forward
     if @task.not_yet_started?
       @task.in_progress!
+      text = "Task status updated"
     elsif @task.in_progress?
-      if action = back
-        @task.not_yet_started!
-      else
-        @task.completed!
-      end
+      @task.completed!
+      text = "Task status updated"
     else
-      @task.in_progress!
+      text = "Task already completed"
     end
 
-      respond_to do |format|
-        format.html { redirect_to task_url, notice: "Task status updated" }
-      end
+    respond_to do |format|
+      format.html { redirect_to task_url, notice: text }
+    end
+  end
+
+  def back
+    if @task.not_yet_started?
+      text = "Task not yet in progress"
+    elsif @task.in_progress?
+      @task.not_yet_started!
+      text = "Task status updated"
+    else
+      @task.in_progress!
+      text = "Task status updated"
+    end
+
+    respond_to do |format|
+      format.html { redirect_to task_url, notice: text}
+    end
   end
 
   # GET /tasks or /tasks.json
