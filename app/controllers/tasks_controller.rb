@@ -17,6 +17,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    respond_to do |format|
+    format.js do 
+      render template: "tasks/edit.js.erb" 
+    end
+  end
   end
 
   # POST /tasks or /tasks.json
@@ -38,11 +43,15 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
+        format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
+        format.js do
+          render template: "tasks/update.js.erb" 
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+
       end
     end
   end

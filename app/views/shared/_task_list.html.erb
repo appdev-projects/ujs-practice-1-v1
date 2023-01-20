@@ -9,64 +9,62 @@
         Completed
       <% end %>
     </div>
-    <div class="card-body">
+    <ul class="list-group list-group-flush">
       <% if foo == :pending %>
-        <div class="card-text">
-          <%= form_with model: Task do |form| %>
-            <%= form.text_area :body, class: "form-control" %>
-            <%= form.hidden_field :status, value: :pending %>
-            <%= form.hidden_field :owner_id, value: current_user.id %>
-            <hr class="invisible">
-            <%= form.submit "Create Task", class: "btn btn-primary container-fluid" %>
-            <hr>
-          <% end %>
-        </div>
-      <% end %>
+        <li class="list-group-item">
+          <div class="card-body">
+            <%= form_with model: Task do |form| %>
+              <%= form.text_area :body, class: "form-control" %>
+              <%= form.hidden_field :status, value: :pending %>
+              <%= form.hidden_field :owner_id, value: current_user.id %>
+              <hr class="invisible">
+              <%= form.submit "Create Task", class: "btn btn-primary container-fluid" %>
+            <% end %>
+          </div>
+        <% end %>
+      </li>
       <% current_user.tasks.where( :status => foo ).each do |task| %>
-        <div class="card">
+        <li id=task-<%= task.id %> class="list-group-item" >
+          <div class="card-body">
+            <div>
+              <p><%= task.body %></p>
+            </div>
+          </div>
           <div class="row">
-            <div class="card-body card-text">
-              <%= task.body %>
+            <div class="col">
+              <span>
+                <% if foo == :pending%>
+                  <%= link_to move_task_path(task), method: "put" do %>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  <% end %>
+                <% elsif foo == :wip %>
+                  <%= link_to move_task_path(task), method: "put" do %>
+                    <i class="fa-solid fa-check"></i>
+                  <% end %>
+                <% elsif foo == :completed %>
+                  <%= link_to move_task_path(task), method: "put" do %>
+                    <i class="fa-solid fa-backward"></i>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+            <div class="col">
+              <span>
+                <%= link_to  edit_task_path(task), remote: true do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+              </span>
+            </div>
+            <div class="col">
+              <span>
+                <%= link_to edit_task_path(task) do %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+              </span>
             </div>
           </div>
-          <div class="card-footer">
-            <div class="row">
-              <div class="col">
-                <span>
-                  <% if foo == :pending%>
-                    <%= link_to move_task_path(task), method: "put" do %>
-                      <i class="fa-solid fa-arrow-right"></i>
-                    <% end %>
-                  <% elsif foo == :wip %>
-                    <%= link_to move_task_path(task), method: "put" do %>
-                      <i class="fa-solid fa-check"></i>
-                    <% end %>
-                  <% elsif foo == :completed %>
-                    <%= link_to move_task_path(task), method: "put" do %>
-                      <i class="fa-solid fa-backward"></i>
-                    <% end %>
-                  <% end %>
-                </span>
-              </div>
-              <div class="col">
-                <span>
-                  <%= link_to  edit_task_path(task) do %>
-                    <i class="fa-solid fa-pen-to-square"></i>
-                  <% end %>
-                </span>
-              </div>
-              <div class="col">
-                <span>
-                  <%= link_to task_path(task), method: :delete, data: { confirm: 'Are you sure?' } do %>
-                    <i class="fa-solid fa-trash"></i>
-                  <% end %>
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr class="invisible">
+        </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </div>
