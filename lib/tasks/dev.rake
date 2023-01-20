@@ -8,7 +8,7 @@ task sample_data: :environment do
 
 
   usernames = Array.new{Faker::Name.first_name}
-  3.times do
+  2.times do
     this_name = Faker::Name.first_name
     usernames << this_name
   end
@@ -29,11 +29,11 @@ task sample_data: :environment do
 
   #Tasks
   all_users.each do |user|
-    5.times do
+    15.times do
       Task.create(
         user_id: user.id,
         content: Faker::TvShows::GameOfThrones.quote,
-        status: "not_yet_started"
+        status: ["not_yet_started", "in_progress","completed"].sample
       )
     end
   end
