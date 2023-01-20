@@ -20,11 +20,11 @@
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <% if notice.present?%>
-            <%=render "shared/flash", message: notice, css_class: "success" %>
+            <%=render "shared/flash_messages", message: notice, css_class: "success" %>
           <% end %>
 
           <% if alert.present?%>
-            <%=render "shared/flash", message: alert, css_class: "danger" %>
+            <%=render "shared/flash_messages", message: alert, css_class: "danger" %>
           <% end %>
 
           <%= yield %>
