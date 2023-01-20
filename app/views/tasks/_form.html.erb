@@ -13,8 +13,8 @@
             </ul>
           </div>
         <% end %>
-            <% form.hidden_field :owner_id %>
-            <% form.hidden_field :status %>
+            <% form.hidden_field :owner_id, value: current_user.id%>
+            <% form.hidden_field :status, value: task.status %>
             <%= form.text_area :body, class: "form-control" %>
         <hr class="invisible">
         <div class="row">
