@@ -1,6 +1,7 @@
+<li id="<%= dom_id task, :form %>" class="list-group-item">
 <%= form_with(model: task) do |form| %>
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, class: "visually-hidden" %>
     <%= form.text_area :content %>
   </div>
 
