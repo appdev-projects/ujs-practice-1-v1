@@ -23,28 +23,21 @@ task sample_data: :environment do
       email: "#{username}@example.com",
       password: "password",
       username: username.downcase,
-      private: [true, false].sample,
     )
   end
  
   users = User.all
 
-  users.each do |user|
-    rand(20).times do
-      user.followers.each do |follower|
-        if rand < 0.5
-          photo.fans << follower
-        end
 
-        if rand < 0.25
-          photo.comments.create(
-            body: Faker::Quote.jack_handey,
-            author: follower
-          )
-        end
-      end
+  Task.statuses.values.each do |status|
+    rand(3..10).times do
+      user.tasks.create(
+        content: Faker::Hipster.sentence,
+        status: status
+      )
     end
   end
+
 
   ending = Time.now
   #p "It took #{(ending - starting).to_i} seconds to create sample data."
