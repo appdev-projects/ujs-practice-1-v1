@@ -7,19 +7,30 @@
     <div class="col-md-4">
       <div class="d-grid gap-2">
         <% if task.status=="not_yet_started" %>
-          MoveP       
-        <% elsif task.status=="in_progress" %>
-          MoveIP
-
-
-        <% else %>
-          MoverC
+          <%= link_to forward_task_path(task), method: :patch, remote: true, class: "btn
+            btn-outline-secondary" do %>
+            <i class="fa-regular fa-circle-play"></i>
+          <% end %>        
+        <% elsif task.status=="completed" %>
+          <%= link_to back_task_path(task), method: :patch, remote: true, class: "btn btn-outline-secondary" do %>
+            <i class="fa-solid fa-backward"></i>
+          <% end %>
+        <% else %>  
+          <%= link_to forward_task_path(task), method: :patch, remote: true, class: "btn
+            btn-outline-secondary" do %>
+            <i class="fa-regular fa-circle-check"></i>
+          <% end %>  
+          <%= link_to back_task_path(task), method: :patch, remote: true, class: "btn btn-outline-secondary" do %>
+            <i class="fa-solid fa-rotate-left"></i>
+          <% end %>
         <% end %>
-
-
-
       </div>
     </div>
+
+
+
+
+
     <div class="col-md-4">
       <div class="d-grid gap-2">
         <%= link_to edit_task_path(task), class: "btn btn-outline-secondary", remote: true  do %>
