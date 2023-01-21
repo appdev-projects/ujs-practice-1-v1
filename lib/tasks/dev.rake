@@ -26,17 +26,17 @@ task sample_data: :environment do
     )
   end
  
-  users = User.all
+  user = User.all
 
 
-  Task.statuses.values.each do |status|
-    rand(3..10).times do
-      user.tasks.create(
-        content: Faker::Hipster.sentence,
-        status: status
-      )
-    end
-  end
+#  Task.statuses.values.each do |status|
+#    rand(3..10).times do
+#      user.tasks.create(
+#        content: Faker::Hipster.sentence,
+#        status: status
+#      )
+#    end
+#  end
 
 
   ending = Time.now
