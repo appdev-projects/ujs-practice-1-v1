@@ -1,4 +1,4 @@
-var new_task = $("<%= j(render @task) %>");
+var new_task = $("<%= j(render 'tasks/taskview', task: @task) %>");
 
 new_task.hide();
 
