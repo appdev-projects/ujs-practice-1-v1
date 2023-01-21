@@ -53,11 +53,8 @@
             </div>
             <div class="col">
               <span>
-                <%= link_to edit_task_path(task) do %>
-                  <i class="fa-solid fa-trash"></i>
-
-                   <%= link_to task_path(task), remote: true, local: false method: "delete" do %>
-                    <i class="fa-solid fa-arrow-left"></i>
+                   <%= link_to task_path(task), remote: true, local: false, method: "delete" do %>
+                    <i class="fa-solid fa-trash"></i>
 
                 <% end %>
               </span>
