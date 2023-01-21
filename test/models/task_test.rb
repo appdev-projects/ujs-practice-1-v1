@@ -2,13 +2,12 @@
 #
 # Table name: tasks
 #
-#  id           :bigint           not null, primary key
-#  tasks        :string
-#  tasks_count  :integer
-#  task_caption :text
-#  owner_id     :bigint           not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :bigint           not null, primary key
+#  content    :text             not null
+#  user_id    :bigint           not null
+#  status     :string           default("not_yet_started"), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 require "test_helper"
 
