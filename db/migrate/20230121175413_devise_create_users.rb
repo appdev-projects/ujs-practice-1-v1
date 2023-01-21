@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.1]
-  enable_extension("citext")
-  
+  enable_extension "citext"
+  enable_extension "plpgsql"
+
   def change
     create_table :users do |t|
       ## Database authenticatable
@@ -35,9 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       t.citext :username
-      t.boolean :private, default: true
-      t.integer :likes_count, default: 0
-      t.integer :comments_count, default: 0
+      t.integer :task_count, default: 0
 
       t.timestamps null: false
     end

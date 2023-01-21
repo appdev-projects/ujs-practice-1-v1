@@ -1,6 +1,7 @@
 # == Route Map
 
 Rails.application.routes.draw do
+  resources :tasks
   root "tasks#index"
 
   devise_for :users
