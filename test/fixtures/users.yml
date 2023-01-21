@@ -10,8 +10,7 @@
 #  remember_created_at    :datetime
 #  username               :string
 #  private                :boolean
-#  likes_count            :integer
-#  comments_count         :integer
+#  task_count             :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
