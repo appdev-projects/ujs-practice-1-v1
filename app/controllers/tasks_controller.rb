@@ -27,11 +27,12 @@ class TasksController < ApplicationController
   # POST /tasks or /tasks.json
   def create
     @task = Task.new(task_params)
-
+    @task.save
     respond_to do |format|
       if @task.save
         format.html { redirect_to tasks_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -59,17 +60,17 @@ class TasksController < ApplicationController
 
    # Patch/Post Move
    def move
-    task = Task.where(id: params.fetch(:id)).first
-    if task.status == "wip"
-      task.status = "completed"
-      task.save
+    @task = Task.where(id: params.fetch(:id)).first
+    if @task.status == "wip"
+      @task.status = "completed"
+      @task.save
     else 
-      task.status = "wip"
-      task.save
+      @task.status = "wip"
+      @task.save
     end
 
     respond_to do |format|
-      if task.save
+      if @task.save
         format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
         format.js do
@@ -89,6 +90,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 

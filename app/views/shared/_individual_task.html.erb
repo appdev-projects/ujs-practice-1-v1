@@ -8,11 +8,11 @@
     <div class="col">
       <span>
         <% if @task == :completed %>
-          <%= link_to move_task_path(task), remote: true, local: false do %>
+          <%= link_to move_task_path(@task), remote: true, local: false do %>
             <i class="fa-solid fa-arrow-left"></i>
           <% end %>
         <% else %>
-          <%= link_to move_task_path(task), remote: true, local: false do %>
+          <%= link_to move_task_path(@task), remote: true, local: false do %>
             <i class="fa-solid fa-arrow-right"></i>
           <% end %>
         <% end %>

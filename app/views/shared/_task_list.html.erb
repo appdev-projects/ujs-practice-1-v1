@@ -1,6 +1,6 @@
 <div class="col">
   <div class="card">
-    <div class="card-header">
+    <div id="<%=foo%>-header" class="card-header">
       <% if foo == :pending %>
         Not Yet Started
       <% elsif foo == :wip %>
@@ -9,11 +9,11 @@
         Completed
       <% end %>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul id="<%=foo%>-list-group" class="list-group list-group-flush">
       <% if foo == :pending %>
-        <li class="list-group-item">
+        <li id="create-task-list-item" class="list-group-item">
           <div class="card-body">
-            <%= form_with model: Task do |form| %>
+            <%= form_with model: Task, remote: true, local: false do |form| %>
               <%= form.text_area :body, class: "form-control" %>
               <%= form.hidden_field :status, value: "pending" %>
               <%= form.hidden_field :owner_id, value: current_user.id %>
@@ -55,6 +55,10 @@
               <span>
                 <%= link_to edit_task_path(task) do %>
                   <i class="fa-solid fa-trash"></i>
+
+                   <%= link_to task_path(task), remote: true, local: false method: "delete" do %>
+                    <i class="fa-solid fa-arrow-left"></i>
+
                 <% end %>
               </span>
             </div>
