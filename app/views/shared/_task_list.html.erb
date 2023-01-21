@@ -1,7 +1,7 @@
 <div class="col">
   <div class="card">
     <div class="card-header">
-      <% if foo == :pending%>
+      <% if foo == :pending %>
         Not Yet Started
       <% elsif foo == :wip %>
         In Progress
@@ -15,7 +15,7 @@
           <div class="card-body">
             <%= form_with model: Task do |form| %>
               <%= form.text_area :body, class: "form-control" %>
-              <%= form.hidden_field :status, value: :pending %>
+              <%= form.hidden_field :status, value: "pending" %>
               <%= form.hidden_field :owner_id, value: current_user.id %>
               <hr class="invisible">
               <%= form.submit "Create Task", class: "btn btn-primary container-fluid" %>
@@ -24,7 +24,7 @@
         <% end %>
       </li>
       <% current_user.tasks.where( :status => foo ).each do |task| %>
-        <li id=task-<%= task.id %> class="list-group-item" >
+        <li id="task-<%= task.id %>" class="list-group-item" >
           <div class="card-body">
             <div>
               <p><%= task.body %></p>
@@ -33,17 +33,13 @@
           <div class="row">
             <div class="col">
               <span>
-                <% if foo == :pending%>
-                  <%= link_to move_task_path(task), method: "put" do %>
+                <% if foo == :completed %>
+                   <%= link_to move_task_path(task), remote: true, local: false do %>
+                    <i class="fa-solid fa-arrow-left"></i>
+                  <% end %>
+                <% else %>
+                 <%= link_to move_task_path(task), remote: true, local: false do %>
                     <i class="fa-solid fa-arrow-right"></i>
-                  <% end %>
-                <% elsif foo == :wip %>
-                  <%= link_to move_task_path(task), method: "put" do %>
-                    <i class="fa-solid fa-check"></i>
-                  <% end %>
-                <% elsif foo == :completed %>
-                  <%= link_to move_task_path(task), method: "put" do %>
-                    <i class="fa-solid fa-backward"></i>
                   <% end %>
                 <% end %>
               </span>

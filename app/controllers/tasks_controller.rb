@@ -56,22 +56,31 @@ class TasksController < ApplicationController
     end
   end
 
-   # Get Move
+
+   # Patch/Post Move
    def move
-
-    task = current_user.tasks.where(:id => params.fetch( :id )).first
-
-
-    if task.status == "pending"
-      task.status = "wip"
-    elsif task.status == "wip"
+    task = Task.where(id: params.fetch(:id)).first
+    if task.status == "wip"
       task.status = "completed"
-    elsif task.status == "completed"
+      task.save
+    else 
       task.status = "wip"
+      task.save
     end
-    task.save
-  end
 
+    respond_to do |format|
+      if task.save
+        format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
+        format.json { render :show, status: :ok, location: @task }
+        format.js do
+          render template: "tasks/move.js.erb" 
+        end
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /tasks/1 or /tasks/1.json
   def destroy

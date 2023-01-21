@@ -7,17 +7,13 @@
   <div class="row">
     <div class="col">
       <span>
-        <% if @task.status == "pending"%>
-          <%= link_to move_task_path(@task), method: "put" do %>
+        <% if @task == :completed %>
+          <%= link_to move_task_path(task), remote: true, local: false do %>
+            <i class="fa-solid fa-arrow-left"></i>
+          <% end %>
+        <% else %>
+          <%= link_to move_task_path(task), remote: true, local: false do %>
             <i class="fa-solid fa-arrow-right"></i>
-          <% end %>
-        <% elsif @task.status == "wip" %>
-          <%= link_to move_task_path(@task), method: "put" do %>
-            <i class="fa-solid fa-check"></i>
-          <% end %>
-        <% elsif @task.status == "completed" %>
-          <%= link_to move_task_path(@task), method: "put" do %>
-            <i class="fa-solid fa-backward"></i>
           <% end %>
         <% end %>
       </span>
