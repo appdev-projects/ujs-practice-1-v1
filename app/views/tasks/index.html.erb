@@ -7,7 +7,7 @@
       <%= link_to 'New Task', new_task_path %>
       <ul id="pending_list" class="list-group list-group-flush">
         <% @tasks.notstarted.each do |task| %>
-          <%= render "tasks/newtask", task: task %>
+          <%= render "tasks/task", task: task %>
         <% end %>
       </ul>
     </div>
@@ -19,8 +19,8 @@
         In progress
       </div>
       <ul id="pending_list" class="list-group list-group-flush">
-        <% @tasks.notstarted.each do |task| %>
-          <%= render "tasks/pendingtask", task: task %>
+        <% @tasks.pending.each do |task| %>
+          <%= render "tasks/task", task: task %>
         <% end %>
       </ul>
     </div>
@@ -32,8 +32,8 @@
         Completed
       </div>
       <ul id="pending_list" class="list-group list-group-flush">
-        <% @tasks.notstarted.each do |task| %>
-          <%= render "tasks/completedtask", task: task %>
+        <% @tasks.complete.each do |task| %>
+          <%= render "tasks/task", task: task %>
         <% end %>
       </ul>
     </div>

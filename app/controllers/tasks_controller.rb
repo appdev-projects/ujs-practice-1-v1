@@ -10,6 +10,9 @@ class TasksController < ApplicationController
   def show
   end
 
+  def forward
+  end
+
   # GET /tasks/new
   def new
     @task = Task.new
