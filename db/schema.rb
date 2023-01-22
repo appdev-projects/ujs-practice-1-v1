@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_22_015942) do
+ActiveRecord::Schema.define(version: 2023_01_22_023948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2023_01_22_015942) do
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "new"
     t.index ["owner_id"], name: "index_tasks_on_owner_id"
   end
 
