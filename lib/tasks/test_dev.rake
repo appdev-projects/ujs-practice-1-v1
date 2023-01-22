@@ -81,12 +81,12 @@ task sample_data: :environment do
 
 
 
-  task prime: :environment do
+
     user = User.find_or_create_by(email: "alice@example.com") do |user|
       user.password = "password"
     end
 
-    user.tasks.destroy_all
+    #user.tasks.destroy_all
 
     Task.statuses.values.each do |status|
       rand(3..10).times do
@@ -96,7 +96,7 @@ task sample_data: :environment do
         )
       end
     end
-  end
+
 
 
 
