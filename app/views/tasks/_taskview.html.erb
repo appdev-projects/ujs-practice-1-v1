@@ -20,9 +20,13 @@
             btn-outline-secondary" do %>
             <i class="fa-regular fa-circle-check"></i>
           <% end %>  
+          <div class="col-md-4">
+            <div class="d-grid gap-2">
           <%= link_to back_task_path(task), method: :patch, remote: true, class: "btn btn-outline-secondary" do %>
             <i class="fa-solid fa-rotate-left"></i>
           <% end %>
+               </div>
+    </div>
         <% end %>
       </div>
     </div>
@@ -32,14 +36,14 @@
 
 
     <div class="col-md-4">
-      <div class="d-grid gap-2">
+      <div class="d-grid gap-3">
         <%= link_to edit_task_path(task), class: "btn btn-outline-secondary", remote: true  do %>
         <i class="fa-regular fa-pen-to-square"></i>
         <% end %>
       </div>
     </div>
     <div class="col-md-4">
-      <div class="d-grid gap-2">
+      <div class="d-grid gap-3">
         <%= link_to task, method: :delete, class: "btn btn-outline-secondary",
         remote: true do %>
         <i class="fa-regular fa-trash-can"></i>

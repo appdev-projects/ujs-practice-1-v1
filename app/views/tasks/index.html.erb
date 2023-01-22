@@ -11,9 +11,12 @@
             <%= render "tasks/form", task: current_user.tasks.build %>
           </div>
         </li>
-        <% current_user.tasks.not_yet_started.each do |a_task| %>
-          <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
-        <% end %>
+        <li id="not_yet_started_list" class="list-group-item">
+          <% current_user.tasks.not_yet_started.each do |a_task| %>
+            <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
+          <% end %>
+        </li>
+        
       </ul> 
     </div>
 
@@ -22,11 +25,11 @@
       <div class="card-header">
         In progress
       </div>
-      <ul class="list-group">
+      <li id="in_progress_list" class="list-group">
         <% current_user.tasks.in_progress.each do |a_task| %>
             <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
         <% end %>
-      </ul>
+      </li>
     </div>
   </div>
 
@@ -35,11 +38,11 @@
       <div class="card-header">
         Complete
       </div>
-      <ul class="list-group">
+      <li id="completed_list" class="list-group">
         <% current_user.tasks.completed.each do |a_task| %>
           <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
         <% end %>
-      </ul>
+      </li>
     </div>
   </div> 
 
