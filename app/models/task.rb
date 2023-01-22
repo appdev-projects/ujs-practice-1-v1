@@ -20,4 +20,7 @@
 class Task < ApplicationRecord
   belongs_to :owner, class_name: "User"
   enum status: { notstarted: "notstarted", pending: "pending", complete: "complete" }
+  scope :notstarted, -> { where(status: "notstarted") }
+  scope :pending, -> { where(status: "pending") }
+  scope :complete, -> { where(status: "complete") }
 end
