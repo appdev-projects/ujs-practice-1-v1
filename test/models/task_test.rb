@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  body       :text
-#  status     :string           default("new")
+#  status     :string           default("notstarted")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  owner_id   :bigint           not null

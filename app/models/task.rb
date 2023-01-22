@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  body       :text
-#  status     :string           default("new")
+#  status     :string           default("notstarted")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  owner_id   :bigint           not null
@@ -19,5 +19,5 @@
 #
 class Task < ApplicationRecord
   belongs_to :owner, class_name: "User"
-  enum status: { new: "new", pending: "pending", complete: "complete" }
+  enum status: { notstarted: "notstarted", pending: "pending", complete: "complete" }
 end
