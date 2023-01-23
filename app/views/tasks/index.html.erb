@@ -6,11 +6,12 @@
       </div>
 
       <ul id="not_yet_started_list" class="list-group list-group-flush">
+        <%= render "tasks/form", task: current_user.tasks.build %>
+        
         <% current_user.tasks.not_yet_started.each do |task| %>
           <%= render "task", task: task %>
         <% end %>
 
-        <%= render "tasks/form", task: current_user.tasks.build %>
       </ul>
     </div>
   </div>
