@@ -12,6 +12,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task updated" }
+      format.js
     end
   end
 
@@ -35,15 +36,17 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     respond_to do |format|
       if @task.save
         format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -54,9 +57,11 @@ class TasksController < ApplicationController
       if @task.update(task_params)
         format.html { redirect_to task_url(@task), notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -68,6 +73,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -79,6 +85,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:content, :user_id, :status)
+      params.require(:task).permit(:content, :status)
     end
 end
