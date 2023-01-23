@@ -1,5 +1,19 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy move ]
+
+  def move
+    if @task.notstarted?
+      @task.pending!
+    elsif @task.pending?
+      @task.complete!
+    else
+      @task.pending!
+    end
+
+    respond_to do |format|
+      format.html { redirect_to tasks_url, notice: "Task status updated" }
+    end
+  end
 
   # GET /tasks or /tasks.json
   def index
@@ -8,9 +22,6 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
-  end
-
-  def forward
   end
 
   # GET /tasks/new
