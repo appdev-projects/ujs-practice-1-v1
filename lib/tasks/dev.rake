@@ -5,13 +5,7 @@ task sample_data: :environment do
   Task.delete_all
   User.delete_all
 
-  people = Array.new(10) do
-    {
-      first_name: Faker::Name.first_name,
-      last_name: Faker::Name.last_name,
-    }
-  end
-
+  people = Array.new
   people << { first_name: "Alice", last_name: "Smith" }
   people << { first_name: "Bob", last_name: "Smith" }
   people << { first_name: "Carol", last_name: "Smith" }
@@ -31,13 +25,23 @@ task sample_data: :environment do
 
   users = User.all
 
+  # users.each do |user|
+  #   rand(15).times do
+  #     a_task = user.tasks.create(
+  #       body: Faker::Quote.jack_handey,
+  #       status: ["notstarted", "pending", "complete"].sample,
+  #     )
+  #     p a_task.errors.full_messages
+  #   end
+  # end
   users.each do |user|
-    rand(15).times do
-      a_task = user.tasks.create(
-        body: Faker::Quote.jack_handey,
-        status: ["notstarted", "pending", "complete"].sample,
-      )
-      p a_task.errors.full_messages
+    Task.statuses.values.each do |status|
+      10.times do
+        user.tasks.create(
+          body: Faker::Quote.jack_handey,
+          status: status,
+        )
+      end
     end
   end
 
