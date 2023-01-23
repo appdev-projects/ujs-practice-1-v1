@@ -3,7 +3,9 @@
 one:
   owner: one
   status: MyString
+  content: MyString
 
 two:
   owner: two
   status: MyString
+  content: MyString
