@@ -23,4 +23,5 @@ class Task < ApplicationRecord
   scope :notstarted, -> { where(status: "notstarted") }
   scope :pending, -> { where(status: "pending") }
   scope :complete, -> { where(status: "complete") }
+  validates :body, presence: true
 end
