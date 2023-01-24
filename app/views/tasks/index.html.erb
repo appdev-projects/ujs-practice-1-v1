@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="card text-white bg-danger mb-3">
+      <div class="card-header" background-color="red">
+        Not yet started
+      </div>
+
+      <ul id="notstarted_list" class="list-group list-group-flush">
+        <%= render "tasks/form", task: current_user.tasks.new %>
+        <% @tasks.notstarted.each do |task| %>
+          <%= render "tasks/task", task: task %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card text-white bg-warning mb-3">
+      <div class="card-header">
+        In progress
+      </div>
+      <ul id="pending_list" class="list-group list-group-flush">
+        <% @tasks.pending.each do |task| %>
+          <%= render "tasks/task", task: task %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-header">
+        Completed
+      </div>
+      <ul id="complete_list" class="list-group list-group-flush">
+        <% @tasks.complete.each do |task| %>
+          <%= render "tasks/task", task: task %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
