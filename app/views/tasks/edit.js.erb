@@ -1,0 +1,2 @@
+var task_form = "<%= j(render "tasks/form", task: @task) %>"
+$("#<%= dom_id(@task) %>").replaceWith(task_form)

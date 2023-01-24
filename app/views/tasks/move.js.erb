@@ -1,0 +1,9 @@
+var task = $("#<%= dom_id(@task) %>");
+task.slideUp(function(){
+  task.remove();
+});
+
+var new_task = $("<%= j(render @task) %>");
+new_task.hide();
+$("#<%= @task.status %>_list").prepend(new_task);
+new_task.slideDown();

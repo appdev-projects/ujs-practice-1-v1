@@ -1,32 +1,13 @@
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
-
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :owner_id %>
-    <%= form.text_field :owner_id %>
+<li id="<%= dom_id(task) %>_form" class="list-group-item">
+<%= form_with(model: task, local: false) do |form| %>
+  <div class="mb-3">
+    <%= form.label :content, class: "visually-hidden" %>
+    <%= form.text_field :content, class: "form-control", rows: "2"%>
   </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
+  <div>
+  <div class="d-grid">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
+</li>
