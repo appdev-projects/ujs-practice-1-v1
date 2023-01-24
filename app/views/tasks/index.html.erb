@@ -1,0 +1,44 @@
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Not yet started
+      </div>
+      <ul id="not_yet_started_list" class="list-group-item">
+          <%= render "tasks/form", task: current_user.tasks.build %>
+          <% current_user.tasks.not_yet_started.each do |a_task| %>
+            <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
+          <% end %>        
+      </ul> 
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        In progress
+      </div>
+      <ul id="in_progress_list" class="list-group">
+        <% current_user.tasks.in_progress.each do |a_task| %>
+            <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Complete
+      </div>
+      <ul id="completed_list" class="list-group">
+        <% current_user.tasks.completed.each do |a_task| %>
+          <%= render partial: "tasks/taskview", locals: { task: a_task }  %>
+        <% end %>
+      </ul>
+    </div>
+  </div> 
+
+  
+</div>
