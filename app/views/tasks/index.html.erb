@@ -6,7 +6,7 @@
       </div>
 
       <ul id="notstarted_list" class="list-group list-group-flush">
-        <%= render "tasks/form", task: current_user.tasks.build %>
+        <%= render "tasks/form", task: current_user.tasks.new %>
         <% @tasks.notstarted.each do |task| %>
           <%= render "tasks/task", task: task %>
         <% end %>

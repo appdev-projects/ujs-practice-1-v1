@@ -11,7 +11,6 @@ class TasksController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: "Task status updated" }
       format.js do
         render template: "tasks/move.js.erb"
       end
@@ -44,7 +43,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = current_user.tasks.build(task_params)
+    @task = current_user.tasks.new(task_params)
 
     respond_to do |format|
       if @task.save
