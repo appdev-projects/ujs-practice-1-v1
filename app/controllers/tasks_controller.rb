@@ -6,7 +6,7 @@ class TasksController < ApplicationController
       @task.pending!
     elsif @task.pending?
       @task.complete!
-    else
+    elsif @task.complete?
       @task.pending!
     end
 
@@ -44,13 +44,15 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     respond_to do |format|
       if @task.save
         format.html { redirect_to task_url(@task), notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
-        format.js
+        format.js do
+          render template: "tasks/create.js.erb"
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -98,6 +100,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:owner_id, :body)
+    params.require(:task).permit(:body, :status)
   end
 end
