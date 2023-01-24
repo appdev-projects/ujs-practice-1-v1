@@ -1,0 +1,4 @@
+2023-01-24 14:23:21.131 CST [80528] FATAL:  lock file "postmaster.pid" already exists
+2023-01-24 14:23:21.131 CST [80528] HINT:  Is another postmaster (PID 80498) running in data directory "/opt/homebrew/var/postgres"?
+2023-01-24 14:27:21.348 CST [81069] FATAL:  lock file "postmaster.pid" already exists
+2023-01-24 14:27:21.348 CST [81069] HINT:  Is another postmaster (PID 81050) running in data directory "/opt/homebrew/var/postgres"?

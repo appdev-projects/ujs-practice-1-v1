@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          Not yet started
+        </div>
+        <ul class="list-group list-group-flush" id="not_yet_started_list">
+          <%= render "tasks/form", task: current_user.tasks.build %>
+          <% current_user.tasks.not_yet_started.by_updated.each do |task| %>
+            <%= render "tasks/task", task: task %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          In progress
+        </div>
+        <ul class="list-group list-group-flush" id="in_progress_list">
+          <% current_user.tasks.in_progress.by_updated.each do |task| %>
+            <%= render "tasks/task", task: task %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-header">
+          Completed
+        </div>
+        <ul class="list-group list-group-flush" id="completed_list">
+          <% current_user.tasks.completed.by_updated.each do |task| %>
+            <%= render "tasks/task", task: task %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
