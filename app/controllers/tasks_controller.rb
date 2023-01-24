@@ -12,7 +12,9 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task status updated" }
-      format.js
+      format.js do
+        render template: "tasks/move.js.erb"
+      end
     end
   end
 

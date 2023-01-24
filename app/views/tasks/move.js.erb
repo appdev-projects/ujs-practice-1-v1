@@ -1,0 +1,3 @@
+$("#<%= dom_id @task %>").remove();
+var moved_task = $("<%= j(render @task) %>");
+$("#<%= @task.status%>_list").prepend(moved_task);
