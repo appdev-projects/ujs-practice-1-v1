@@ -12,7 +12,6 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to task_url, notice: "Task updated"}
-
       format.js
     end
   end
@@ -34,6 +33,10 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /tasks or /tasks.json
@@ -48,6 +51,7 @@ class TasksController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -62,6 +66,7 @@ class TasksController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
