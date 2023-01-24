@@ -1,0 +1,36 @@
+<li id="task-<%= @task.id %>" class="list-group-item" >
+  <div class="card-body">
+    <div>
+      <p><%= @task.body %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <span>
+        <% if @task == :completed %>
+          <%= link_to move_task_path(@task), remote: true, local: false do %>
+            <i class="fa-solid fa-arrow-left"></i>
+          <% end %>
+        <% else %>
+          <%= link_to move_task_path(@task), remote: true, local: false do %>
+            <i class="fa-solid fa-arrow-right"></i>
+          <% end %>
+        <% end %>
+      </span>
+    </div>
+    <div class="col">
+      <span>
+        <%= link_to  edit_task_path(@task), remote: true do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+      </span>
+    </div>
+    <div class="col">
+      <span>
+        <%= link_to edit_task_path(@task) do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</li>

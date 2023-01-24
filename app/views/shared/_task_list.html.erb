@@ -1,0 +1,67 @@
+<div class="col">
+  <div class="card">
+    <div id="<%=foo%>-header" class="card-header">
+      <% if foo == :pending %>
+        Not Yet Started
+      <% elsif foo == :wip %>
+        In Progress
+      <% else %>
+        Completed
+      <% end %>
+    </div>
+    <ul id="<%=foo%>-list-group" class="list-group list-group-flush">
+      <% if foo == :pending %>
+        <li id="create-task-list-item" class="list-group-item">
+          <div class="card-body">
+            <%= form_with model: Task, remote: true, local: false do |form| %>
+              <%= form.text_area :body, class: "form-control" %>
+              <%= form.hidden_field :status, value: "pending" %>
+              <%= form.hidden_field :owner_id, value: current_user.id %>
+              <hr class="invisible">
+              <%= form.submit "Create Task", class: "btn btn-primary container-fluid" %>
+            <% end %>
+          </div>
+        <% end %>
+      </li>
+      <% current_user.tasks.where( :status => foo ).each do |task| %>
+        <li id="task-<%= task.id %>" class="list-group-item" >
+          <div class="card-body">
+            <div>
+              <p><%= task.body %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <span>
+                <% if foo == :completed %>
+                   <%= link_to move_task_path(task), remote: true, local: false do %>
+                    <i class="fa-solid fa-arrow-left"></i>
+                  <% end %>
+                <% else %>
+                 <%= link_to move_task_path(task), remote: true, local: false do %>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  <% end %>
+                <% end %>
+              </span>
+            </div>
+            <div class="col">
+              <span>
+                <%= link_to  edit_task_path(task), remote: true do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+              </span>
+            </div>
+            <div class="col">
+              <span>
+                   <%= link_to task_path(task), remote: true, local: false, method: "delete" do %>
+                    <i class="fa-solid fa-trash"></i>
+
+                <% end %>
+              </span>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

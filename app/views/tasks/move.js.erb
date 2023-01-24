@@ -1,0 +1,2 @@
+$("#task-<%=@task.id%>").remove();
+$("#<%=@task.status%>-list-group").prepend("<%= j(render partial: "shared/individual_task", task: @task)%>");

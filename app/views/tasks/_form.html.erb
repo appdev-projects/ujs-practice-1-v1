@@ -1,0 +1,28 @@
+<li id="update-task-<%=task.id%>" class="list-group-item" >
+  <div class="card-body">
+    <span>
+      <%= form_with model: task, local: false, remote: true do |form| %>
+        <% if task.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+            <ul>
+              <% task.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+            <% form.hidden_field :owner_id, value: current_user.id%>
+            <% form.hidden_field :status, value: task.status %>
+            <%= form.text_area :body, class: "form-control" %>
+        <hr class="invisible">
+        <div class="row">
+          <div class="col">
+            <%= form.submit "Update Task", class: "btn btn-primary container-fluid", remote: true, local: false %>
+          </div>
+        </div>
+      <% end %>
+    </span>
+  </div>
+</li>
