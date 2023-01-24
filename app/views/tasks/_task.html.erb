@@ -1,0 +1,23 @@
+<li class="list-group-item">
+  <%= task.content %>
+  <div class="row">
+    <div class="btn-group">
+      <%= link_to move_task_path(task), class: "btn btn-link", method: :patch do %>
+        <% case task.status %>
+        <% when "not_yet_started" %>
+          <i class="fa-solid fa-stopwatch"></i>
+        <% when "in_progress"%>
+          <i class="fa-solid fa-circle-check"></i>
+        <% else %>
+          <i class="fa-solid fa-rotate-right"></i>
+        <% end %>
+      <% end %>
+      <%= link_to "#", class: "btn btn-link" do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+      <%= link_to "#", class: "btn btn-link" do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  </div>
+</li>
