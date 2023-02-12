@@ -1,25 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-4">
+    <h2 class="h6 text-center">Not yet started</h2>
 
-<h1>Tasks</h1>
+    <ul class="list-group">
+      <%= render current_user.tasks.not_yet_started.order(created_at: :asc) %>
+    </ul>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="col-md-4">
+    <h2 class="h6 text-center">In progress</h2>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <ul class="list-group">
+        <%= render current_user.tasks.in_progress.order(updated_at: :desc) %>
+      </ul>
+    </div>
 
-<br>
+    <div class="col-md-4">
+    <h2 class="h6 text-center">Completed</h2>
 
-<%= link_to 'New Task', new_task_path %>
+    <ul class="list-group">
+      <%= render current_user.tasks.completed.order(updated_at: :desc) %>
+    </ul>
+  </div>
+</div>
