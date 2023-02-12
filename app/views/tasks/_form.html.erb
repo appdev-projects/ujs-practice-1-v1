@@ -1,5 +1,5 @@
 <li id="<%= dom_id task, :edit %>" class="list-group-item">
-  <%= form_with(model: task) do |form| %>
+  <%= form_with(model: task, local: false) do |form| %>
     <div class="mb-2">
       <%= form.label :content, class: "visually-hidden" %>
       <%= form.text_field :content, class: "form-control" %>
