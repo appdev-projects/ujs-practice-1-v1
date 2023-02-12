@@ -1,17 +1,14 @@
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<li id="<%= dom_id task, :edit %>" class="list-group-item">
+  <%= form_with(model: task) do |form| %>
+    <div class="mb-2">
+      <%= form.label :content, class: "visually-hidden" %>
+      <%= form.text_field :content, class: "form-control" %>
+    </div>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div>
+      <div class="d-grid">
+        <%= form.submit class: "btn btn-outline-warning" %>
+      </div>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</li>
