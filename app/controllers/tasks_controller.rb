@@ -12,6 +12,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task updated" }
+      format.js
     end
   end
 
@@ -68,6 +69,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tasks_url, notice: "Task was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
