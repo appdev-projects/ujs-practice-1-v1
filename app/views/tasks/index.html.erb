@@ -1,27 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Tasks</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.content %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
+<div class="container">
+  <div class="row row-cols-3 g-3 mt-5">
+    <div class="col">
+      <div class="card border-dark rounded">
+        <div class="card-header bg-warning text-white">
+          Not yet started
+        </div>
+        <ul class="list-group list-group-flush">
+          <%= render current_user.tasks.not_started.order(created_at: :asc) %>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-dark rounded">
+        <div class="card-header bg-info text-white">
+          In progess
+        </div>
+        <ul class="list-group list-group-flush">
+          <%= render current_user.tasks.in_progress.order(updated_at: :desc) %>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-dark rounded">
+        <div class="card-header bg-success text-white">
+          Completed
+        </div>
+        <ul class="list-group list-group-flush">
+          <%= render current_user.tasks.completed.order(updated_at: :desc) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
