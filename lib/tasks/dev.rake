@@ -16,6 +16,6 @@ namespace :dev do
         status: Task.statuses.keys.sample
       )
     end
-    puts "Created #{Tasks.count} tasks"
+    puts "Created #{Task.count} tasks"
   end
 end
