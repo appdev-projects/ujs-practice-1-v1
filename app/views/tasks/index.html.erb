@@ -6,11 +6,7 @@
           Not yet started
         </div>
         <ul class="list-group list-group-flush">
-      <% current_user.tasks.not_started.each do |t| %>
-        <li class="list-group-item">
-          <%= t.content %>
-        </li>
-      <% end %>
+          <%= render current_user.tasks.not_started.order(created_at: :asc) %>
         </ul>
       </div>
     </div>
@@ -20,11 +16,7 @@
           In progess
         </div>
         <ul class="list-group list-group-flush">
-      <% current_user.tasks.in_progress.each do |t| %>
-        <li class="list-group-item">
-          <%= t.content %>
-        </li>
-      <% end %>
+          <%= render current_user.tasks.in_progress.order(updated_at: :desc) %>
         </ul>
       </div>
     </div>
@@ -34,11 +26,7 @@
           Completed
         </div>
         <ul class="list-group list-group-flush">
-      <% current_user.tasks.completed.each do |t| %>
-        <li class="list-group-item">
-          <%= t.content %>
-        </li>
-      <% end %>
+          <%= render current_user.tasks.completed.order(updated_at: :desc) %>
         </ul>
       </div>
     </div>
