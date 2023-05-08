@@ -1,6 +1,6 @@
 <li id="<%= dom_id task, :form %>" class="list-group-item">
 
-<%= form_with(model: task) do |form| %>
+  <%= form_with(model: task, local: false) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -13,13 +13,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+    <div class="mb-2">
+      <%= form.label :content, class: "visually-hidden" %>
+      <%= form.text_field :content, class: "form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div>
+      <div class="text-center">
+        <%= form.submit class: "btn btn-outline-primary" %>
+      </div>
+    </div>
+  <% end %>
 </li>
