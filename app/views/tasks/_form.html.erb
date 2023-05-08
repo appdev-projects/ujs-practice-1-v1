@@ -1,3 +1,5 @@
+<li id="<%= dom_id task, :form %>" class="list-group-item">
+
 <%= form_with(model: task) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
@@ -20,3 +22,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</li>
