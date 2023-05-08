@@ -39,7 +39,7 @@
 		"editor.formatOnSave": true
   },
   "[ruby]":  {
-    "editor.defaultFormatter": "firstdraft.vscode-rufo",
+    "editor.defaultFormatter": "mbessey.vscode-rufo",
 		"editor.formatOnSave": true
   },
   "vscode-erb-beautify.keepBlankLines": 1,

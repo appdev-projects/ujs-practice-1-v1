@@ -1,0 +1,11 @@
+<% if notice.present? %>
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <%= notice %>
+</div>
+<% end %>
+<% if alert.present? %>
+  <div class="alert alert-warning" role="alert">
+    <%= alert %>
+  </div>
+<% end %>

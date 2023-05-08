@@ -1,0 +1,27 @@
+<li id="<%= dom_id task, :form %>" class="list-group-item">
+
+  <%= form_with(model: task, local: false) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="mb-2">
+      <%= form.label :content, class: "visually-hidden" %>
+      <%= form.text_field :content, class: "form-control", style: "height: 80px;" %>
+    </div>
+
+    <div>
+      <div class="text-center">
+        <%= form.submit class: "btn btn-outline-primary" %>
+      </div>
+    </div>
+  <% end %>
+</li>
